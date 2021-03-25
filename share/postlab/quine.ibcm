@@ -1,0 +1,27 @@
+C005 000 jmp start		jump to program start
+0002 001 dw i 			int i = 2, because we're gonna go ahead and print the first two lines
+0001 002 dw one 		int one = 1 
+3000 003 dw loadit 		instruction loadit = 3000 
+001B 004 dw lines		int lines = 100
+3000 005 load line0			SAVE SPACE
+1800 006 printH			SAVE SPACE
+3001 007 load i			
+1800 008 printH			If we don't do this, i will print what it is when the print statement happens rather than 0
+b000 009 nop			PROGRAM STARTS BELOW
+3003 00A load loadit 	LOOP: accum = loadit instruction = 3000 on first
+5001 00B add i 			accum = loadit instruction + i = 3000 on first 
+400D 00C store instruction 	
+b000 00D nop			INSTRUCTION TO LOAD VALUE AT MEM LOCATION HERE, first iter will be 3000, so accum will hold C00A
+1800 00E printH 		print the value
+b000 00F nop			SAVE SPACE
+b000 010 nop			SAVE SPACE
+b000 012 nop			SAVE SPACE
+b000 013 nop			SAVE SPACE
+b000 014 nop 			INCREMENT I BELOW 
+3001 015 load i 	
+5002 016 add one 
+4001 017 store i 		i++ 
+6004 018 sub lines 		Accum = i - lines = should be negative for a while 
+D020 019 jmpe halt		If ( i - lines == 0 ) end program
+C00A 01A jmp LOOP		else return to loop 
+0000 01B halt

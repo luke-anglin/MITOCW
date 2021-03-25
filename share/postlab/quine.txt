@@ -1,0 +1,38 @@
+Variable dec
+
+Program size
+i 
+one
+loadit
+
+I need a print command 
+
+IBCM sin #s
+
+C--- jump to start 
+dw i 
+dw one
+dw loadit 
+dw lines
+nop
+nop
+nop
+nop
+START HERE 
+load loadit			
+add i 
+store_next 
+nop doit 		Accum holds first line value 
+printH 			that first line is printed
+load i 
+add one 
+store i 	
+sub size
+jmpe halt 
+nop
+nop
+nop
+nop
+jmp l22 
+halt
+
